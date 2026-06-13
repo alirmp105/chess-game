@@ -7,7 +7,6 @@ public class Main {
         try {
             if (System.getProperty("os.name").toLowerCase().contains("win")) {
                 new ProcessBuilder("cmd", "/c", "chcp 65001 > nul && echo").inheritIO().start().waitFor();
-
                 System.out.print("\033[?25h");
             }
         } catch (Exception ignored) { }

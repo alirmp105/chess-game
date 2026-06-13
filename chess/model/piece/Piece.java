@@ -8,6 +8,7 @@ public abstract class Piece {
 
     protected final Color color;
     protected final Type type;
+    protected boolean hasMoved = false;
 
     public Piece(Color color, Type type) {
         this.color = color;
@@ -16,9 +17,11 @@ public abstract class Piece {
 
     public Color getColor() { return color; }
     public Type getType() { return type; }
+    public boolean hasMoved() { return hasMoved; }
+    public void setMoved() { this.hasMoved = true; }
 
     public char getSymbol() {
-        char c = switch (type) {
+        return switch (type) {
             case KING   -> 'K';
             case QUEEN  -> 'Q';
             case ROOK   -> 'R';
@@ -26,7 +29,6 @@ public abstract class Piece {
             case KNIGHT -> 'N';
             case PAWN   -> 'P';
         };
-        return (color == Color.WHITE) ? c : c;
     }
 
     public abstract boolean isValidMove(Board board, int fromRow, int fromCol, int toRow, int toCol);
